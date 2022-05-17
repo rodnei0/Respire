@@ -1,70 +1,60 @@
 import * as React from 'react';
 import { Typography, AppBar, Paper, Box, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@mui/material';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import {Restore, Archive, Favorite} from '@mui/icons-material';
+import { Widgets, Assessment } from '@mui/icons-material';
 
 export default function Home() {
     const [value, setValue] = React.useState(0);
 
     return (
-        <>
+        <Container sx={{ height: '100vh', pt: 5, pb: 8}} disableGutters={true}>
             <CssBaseline />
-            <AppBar position='relative'>
-                <Typography variant='h6'>
+            <AppBar sx={{ position: 'fixed', top: 0, left: 0, right: 0, bgcolor: '#ffffff'}}>
+                <Typography variant='h6' align='center' color='black'>
                     Respire
                 </Typography>
             </AppBar>
-            <main>
-                <div>
-                    <Container maxWidth='sm' sx={{
-                        padding: '50px'
-                    }}>
-                        <Grid container spacing={2} direction="column" justifyContent="center" alignItems="center">
-                            <Grid item>
-                                <Card sx={{
-                                    width: 150,
-                                    height: 150,
-                                    backgroundColor: 'red'
-                                }}>
-                                    <CardContent>
-                                        <Typography variant='body1' align='center'>
-                                            Técnica 1
-                                        </Typography>
-                                    </CardContent>
-                                </ Card>
-                            </Grid>
-                            <Grid item>
-                                <Card sx={{
-                                    width: 150,
-                                    height: 150,
-                                    backgroundColor: 'red'
-                                }}>
-                                    <CardContent>
-                                        <Typography variant='body1' align='center'>
-                                            Técnica 2
-                                        </Typography>
-                                    </CardContent>
-                                </ Card>
-                            </Grid>
-                        </Grid>
-                    </Container>
-                </div>
-            </main>
+            <Container sx={{ height: '100%'}}>
+                <Grid container justifyContent="center" alignItems="center" sx={{ height: '100%'}}>
+                    <Grid item sx={{ height: '48%', width: '100%'}}>
+                        <Card sx={{ bgcolor: 'primary.light', height: '100%', display: 'flex', alignItems: 'center'}}> 
+                            <CardContent>
+                                <Typography variant='h5' align='center'>
+                                    Método 4-7-8
+                               </Typography>
+                                <Typography variant='body1' align='center'>
+                                    Um tranquilizante natural para o sisterma nervoso, auxiliando em um sono de melhor qualidade
+                               </Typography>
+                            </CardContent>
+                        </ Card>
+                    </Grid>
+                    <Grid item sx={{ height: '48%', width: '100%'}}>
+                        <Card sx={{ bgcolor: 'secondary.light', height: '100%', display: 'flex', alignItems: 'center'}}>
+                            <CardContent>
+                                <Typography variant='h5' align='center'>
+                                    Método Caixa
+                                </Typography>
+                                <Typography variant='body1' align='center'>
+                                    Um exercício muito simples porém muito efetivo para aliviar o stress
+                                </Typography>
+                            </CardContent>
+                        </ Card>
+                    </Grid>
+                </Grid>
+            </Container>
             <footer>
                 <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                     <BottomNavigation
-                    showLabels
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                    >
-                    <BottomNavigationAction label="Recents" icon={<Restore />} />
-                    <BottomNavigationAction label="Favorites" icon={<Favorite />} />
-                    <BottomNavigationAction label="Archive" icon={<Archive />} />
+                        showLabels
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                    }}>
+                        <BottomNavigationAction label="Métodos" icon={<Widgets />} />
+                        <BottomNavigationAction label="Progresso" icon={<Assessment />} />
                     </BottomNavigation>
                 </Paper>
             </footer>
-        </>
+        </Container>
     );
 }
