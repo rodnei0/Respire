@@ -17,7 +17,7 @@ export default function Home() {
             <Container sx={{ height: '100%'}}>
                 <Grid container justifyContent="center" alignItems="center" sx={{ height: '100%'}}>
                     <Grid item sx={{ height: '48%', width: '100%'}}>
-                        <Card sx={{ bgcolor: 'primary.light', height: '100%', display: 'flex', alignItems: 'center'}}> 
+                        <Card sx={{ bgcolor: 'primary.light', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}> 
                             <CardContent>
                                 <Typography variant='h5' align='center'>
                                     Método 4-7-8
@@ -29,7 +29,7 @@ export default function Home() {
                         </ Card>
                     </Grid>
                     <Grid item sx={{ height: '48%', width: '100%'}}>
-                        <Card sx={{ bgcolor: 'secondary.light', height: '100%', display: 'flex', alignItems: 'center'}}>
+                        <Card sx={{ bgcolor: 'secondary.light', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                             <CardContent>
                                 <Typography variant='h5' align='center'>
                                     Método Caixa
