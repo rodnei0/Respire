@@ -6,7 +6,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@emotion/react';
 
-function BreathAnimation(stepTime, breatheTime, holdTime, setAnimation, setStep, setStepTime) {
+function BreathAnimation(breatheTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime) {
     setStep('Respire');
     setStepTime(breatheTime);
     setAnimation(grow);
@@ -18,28 +18,28 @@ function BreathAnimation(stepTime, breatheTime, holdTime, setAnimation, setStep,
 
         setTimeout(() => {
             setStep('Expire');
+            setStepTime(breatheOutTime);
             setAnimation(shrink);
-
-        }, stepTime)
-    }, stepTime)
+        }, holdTime)
+    }, breatheTime)
 }
 
 export default function Methods() {
     const totalTime = 19000;
-    const breatheTime = (totalTime/19)*4;
+    const breatheInTime = (totalTime/19)*4;
     const holdTime = (totalTime/19)*7;
+    const breatheOutTime = totalTime - breatheInTime - holdTime;
     const [animation, setAnimation] = React.useState(keyframes);
     const [step, setStep] = React.useState('');
-    const [stepTime, setStepTime] = React.useState(breatheTime)
+    const [stepTime, setStepTime] = React.useState(breatheInTime)
 
     React.useEffect(() => {
-        BreathAnimation(stepTime, breatheTime, holdTime, setAnimation, setStep, setStepTime)
+        BreathAnimation(breatheInTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime);
+        setInterval(() => {
+            BreathAnimation(breatheInTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime);
+        }, totalTime);
     },[]);
     
-    // setInterval(BreathAnimation, totalTime)
-    console.log(stepTime)
-
-
     return (
         <Container sx={{ height: '100vh', pt: 5, pb: 5}} disableGutters={true}>
             <CssBaseline />
@@ -59,45 +59,55 @@ export default function Methods() {
 
 const mantain = keyframes`
     from {
-        transform: scale(2.5)
+        width: 75vw;
+        height: 75vw;
+        max-height: 75vh;
+        max-width: 75vh;
     }
     to {
-        transform: scale(2.5)
+        width: 75vw;
+        height: 75vw;
+        max-height: 75vh;
+        max-width: 75vh;
     }
 `;
 const grow = keyframes`
     from {
-        transform: scale(1)
+        width: 30vw;
+        height: 30vw;
+        max-height: 30vh;
+        max-width: 30vh;
     }
     to {
-        transform: scale(2.5)
+        width: 75vw;
+        height: 75vw;
+        max-height: 75vh;
+        max-width: 75vh;
     }
 `;
 
 const shrink = keyframes`
     from {
-        transform: scale(2.5)
+        width: 75vw;
+        height: 75vw;
+        max-height: 75vh;
+        max-width: 75vh;
     }
     to {
-        transform: scale(1)
+        width: 30vw;
+        height: 30vw;
+        max-height: 30vh;
+        max-width: 30vh;
     }
-`;
-
-const teste = keyframes`
-    0% { transform: scale(1) }
-    50% { transform: scale(1.5) }
-    100% { transform: scale(1) }
 `;
 
 const BreathCircle = styled(Box)`
     width: 30vw;
     height: 30vw;
-    max-height: 50vh;
-    max-width: 50vh;
+    max-height: 75vh;
+    max-width: 75vh;
     background: #8F85AD;
     border-radius: 50%;
-    /* animation: ${teste} 9000ms infinite; */
-    /* animation: ${props => props.animation && props.animation} 6000ms infinite; */
     animation: ${props => props.animation && props.animation} ${props => props.stepTime && props.stepTime+'ms'} linear;
     position: absolute;
     margin-left: auto;
@@ -109,12 +119,19 @@ const BreathCircle = styled(Box)`
 `;
 
 const InnerCircle = styled(Box)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
     width: 30vw;
     height: 30vw;
     max-height: 30vh;
     max-width: 30vh;
     background: #645986;
     border-radius: 50%;
+
     position: absolute;
     margin-left: auto;
     margin-right: auto;
