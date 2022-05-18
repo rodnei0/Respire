@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Typography, AppBar, Paper, Box, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@mui/material';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { Widgets, Assessment } from '@mui/icons-material';
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 export default function Home() {
     const [value, setValue] = React.useState(0);
+	const navigate = useNavigate();
 
     return (
         <Container sx={{ height: '100vh', pt: 5, pb: 8}} disableGutters={true}>
@@ -15,9 +17,12 @@ export default function Home() {
                 </Typography>
             </AppBar>
             <Container sx={{ height: '100%'}}>
-                <Grid container justifyContent="center" alignItems="center" sx={{ height: '100%'}}>
+                <Grid container sx={{ height: '100%', justifyContent: 'center', alignItems: 'center'}}>
                     <Grid item sx={{ height: '48%', width: '100%'}}>
-                        <Card sx={{ bgcolor: 'primary.light', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}> 
+                        <Card 
+                            onClick={() => navigate('/methods')} 
+                            sx={{ bgcolor: 'primary.light', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': {cursor: 'pointer'}}}
+                        > 
                             <CardContent>
                                 <Typography variant='h5' align='center'>
                                     Método 4-7-8
@@ -29,7 +34,10 @@ export default function Home() {
                         </ Card>
                     </Grid>
                     <Grid item sx={{ height: '48%', width: '100%'}}>
-                        <Card sx={{ bgcolor: 'secondary.light', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <Card 
+                            onClick={() => navigate('/methods')} 
+                            sx={{ bgcolor: 'secondary.light', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': {cursor: 'pointer'}}}
+                        > 
                             <CardContent>
                                 <Typography variant='h5' align='center'>
                                     Método Caixa
