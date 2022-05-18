@@ -21,7 +21,7 @@ export default function Home() {
                     <Grid item sx={{ height: '48%', width: '100%'}}>
                         <Card 
                             onClick={() => navigate('/methods')} 
-                            sx={{ bgcolor: 'primary.light', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': {cursor: 'pointer'}}}
+                            sx={{ bgcolor: '#655A87', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': {cursor: 'pointer'}}}
                         > 
                             <CardContent>
                                 <Typography variant='h5' align='center'>
