@@ -1,17 +1,34 @@
 import * as React from 'react';
-import { Typography, AppBar, Paper, Box, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@mui/material';
+import { Typography, AppBar, Paper, Box, Card, CardActions, CardContent, Grid, Container } from '@mui/material';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { Widgets, Assessment } from '@mui/icons-material';
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import MethodContext from '../../contexts/MethodContext';
 
 export default function Home() {
+    const {setPalette} = React.useContext(MethodContext);
+    const {setMethod} = React.useContext(MethodContext);
     const [value, setValue] = React.useState(0);
 	const navigate = useNavigate();
 
+    function handleMethod(setMethod, method) {
+        const totalTime =  method === 'primary' ? 19000 : 12000;
+        const breatheTime =  method === 'primary' ? 4000 : 4000;
+        const holdTime =  method === 'primary' ? 7000 : 4000;
+        
+        setPalette(method)        
+        setMethod({
+            totalTime: totalTime,
+            breatheInTime: breatheTime,
+            holdTime: holdTime,
+        });
+    
+        navigate('/methods');
+    }
+
     return (
         <Container sx={{ height: '100vh', pt: 5, pb: 8}} disableGutters={true}>
-            <CssBaseline />
-            <AppBar sx={{ position: 'fixed', top: 0, left: 0, right: 0, bgcolor: '#ffffff'}}>
+            <AppBar sx={{ position: 'fixed', top: 0, left: 0, right: 0, bgcolor: '#CDE2F4'}}>
                 <Typography variant='h6' align='center' color='black'>
                     Respire
                 </Typography>
@@ -20,7 +37,7 @@ export default function Home() {
                 <Grid container sx={{ height: '100%', justifyContent: 'center', alignItems: 'center'}}>
                     <Grid item sx={{ height: '48%', width: '100%'}}>
                         <Card 
-                            onClick={() => navigate('/methods')} 
+                            onClick={() => {handleMethod(setMethod, 'primary')}} 
                             sx={{ bgcolor: 'primary.main', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': {cursor: 'pointer'}}}
                         > 
                             <CardContent>
@@ -35,7 +52,7 @@ export default function Home() {
                     </Grid>
                     <Grid item sx={{ height: '48%', width: '100%'}}>
                         <Card 
-                            onClick={() => navigate('/methods')} 
+                            onClick={() => {handleMethod(setMethod, 'secondary')}}    
                             sx={{ bgcolor: 'secondary.main', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', '&:hover': {cursor: 'pointer'}}}
                         > 
                             <CardContent>
@@ -66,3 +83,4 @@ export default function Home() {
         </Container>
     );
 }
+

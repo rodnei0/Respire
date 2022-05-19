@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Typography, AppBar, Paper, Box, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@mui/material';
-import { BottomNavigation, BottomNavigationAction } from '@mui/material';
+import { AppBar, Box, Container } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@emotion/react';
+import MethodContext from '../../contexts/MethodContext';
 
 function BreathAnimation(breatheTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime) {
     setStep('Respire');
@@ -25,9 +25,10 @@ function BreathAnimation(breatheTime, holdTime, breatheOutTime, setAnimation, se
 }
 
 export default function Methods() {
-    const totalTime = 19000;
-    const breatheInTime = (totalTime/19)*4;
-    const holdTime = (totalTime/19)*7;
+    const {palette, method} = React.useContext(MethodContext);
+    const totalTime = method.totalTime;
+    const breatheInTime = method.breatheInTime;
+    const holdTime = method.holdTime;
     const breatheOutTime = totalTime - breatheInTime - holdTime;
     const [animation, setAnimation] = React.useState(keyframes);
     const [step, setStep] = React.useState('');
@@ -44,14 +45,13 @@ export default function Methods() {
     
     return (
         <Container sx={{ height: '100vh', pt: 5, pb: 5}} disableGutters={true}>
-            <CssBaseline />
             <AppBar sx={{ position: 'fixed', top: 0, left: 0, right: 0, bgcolor: '#ffffff'}}>
                 <ArrowBack onClick={() => {navigate(-1)}} sx={{color: 'black'}}></ArrowBack>
             </AppBar>
             <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <InnerCircle sx={{bgcolor: 'primary.main'}}>{step}</InnerCircle>
-                <BreathCircle sx={{bgcolor: 'primary.lighter'}} animation={animation} stepTime={stepTime}></BreathCircle>
-                <OuterCircle sx={{bgcolor: 'primary.xlighter'}}></OuterCircle>
+                <InnerCircle sx={{bgcolor: `${palette}.main`}}>{step}</InnerCircle>
+                <BreathCircle sx={{bgcolor: `${palette}.lighter`}} animation={animation} stepTime={stepTime}></BreathCircle>
+                <OuterCircle sx={{bgcolor: `${palette}.xlighter`}}></OuterCircle>
             </Container>
         </Container>
     );
