@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Typography, AppBar, Paper, Box, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@mui/material';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { Widgets, Assessment } from '@mui/icons-material';
+import { ArrowBack } from '@mui/icons-material';
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@emotion/react';
@@ -32,6 +32,8 @@ export default function Methods() {
     const [animation, setAnimation] = React.useState(keyframes);
     const [step, setStep] = React.useState('');
     const [stepTime, setStepTime] = React.useState(breatheInTime)
+	const navigate = useNavigate();
+
 
     React.useEffect(() => {
         BreathAnimation(breatheInTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime);
@@ -44,14 +46,12 @@ export default function Methods() {
         <Container sx={{ height: '100vh', pt: 5, pb: 5}} disableGutters={true}>
             <CssBaseline />
             <AppBar sx={{ position: 'fixed', top: 0, left: 0, right: 0, bgcolor: '#ffffff'}}>
-                <Typography variant='h6' color='black'>
-                    botao de voltar
-                </Typography>
+                <ArrowBack onClick={() => {navigate(-1)}} sx={{color: 'black'}}></ArrowBack>
             </AppBar>
             <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <InnerCircle>{step}</InnerCircle>
-                <BreathCircle animation={animation} stepTime={stepTime}></BreathCircle>
-                <OuterCircle></OuterCircle>
+                <InnerCircle sx={{bgcolor: 'primary.main'}}>{step}</InnerCircle>
+                <BreathCircle sx={{bgcolor: 'primary.lighter'}} animation={animation} stepTime={stepTime}></BreathCircle>
+                <OuterCircle sx={{bgcolor: 'primary.xlighter'}}></OuterCircle>
             </Container>
         </Container>
     );
@@ -106,7 +106,6 @@ const BreathCircle = styled(Box)`
     height: 30vw;
     max-height: 75vh;
     max-width: 75vh;
-    background: #8F85AD;
     border-radius: 50%;
     animation: ${props => props.animation && props.animation} ${props => props.stepTime && props.stepTime+'ms'} linear;
     position: absolute;
@@ -124,12 +123,12 @@ const InnerCircle = styled(Box)`
     justify-content: center;
 
     color: #ffffff;
+    font-size: clamp(1rem, 5vw, 3rem);
 
     width: 30vw;
     height: 30vw;
     max-height: 30vh;
     max-width: 30vh;
-    background: #645986;
     border-radius: 50%;
 
     position: absolute;
@@ -146,7 +145,6 @@ const OuterCircle = styled(Box)`
     height: 75vw;
     max-height: 75vh;
     max-width: 75vh;
-    background: #C7C2D6;
     border-radius: 50%;
     position: absolute;
     margin-left: auto;
