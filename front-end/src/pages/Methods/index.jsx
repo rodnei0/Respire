@@ -25,7 +25,7 @@ function BreathAnimation(breatheTime, holdTime, breatheOutTime, setAnimation, se
 }
 
 export default function Methods() {
-    const {palette, method} = React.useContext(MethodContext);
+    const {palette, method, cycle} = React.useContext(MethodContext);
     const totalTime = method.totalTime;
     const breatheInTime = method.breatheInTime;
     const holdTime = method.holdTime;
@@ -35,12 +35,20 @@ export default function Methods() {
     const [stepTime, setStepTime] = React.useState(breatheInTime)
 	const navigate = useNavigate();
 
-
     React.useEffect(() => {
         BreathAnimation(breatheInTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime);
-        setInterval(() => {
-            BreathAnimation(breatheInTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime);
-        }, totalTime);
+
+        if (cycle > 1) {
+            let counter = 0;
+            let looper = setInterval(() => {
+                counter++;
+                BreathAnimation(breatheInTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime);
+                
+                if (counter >= cycle - 1) {
+                    clearInterval(looper)
+                }
+            }, totalTime);
+        }
     },[]);
     
     return (

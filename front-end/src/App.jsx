@@ -19,6 +19,11 @@ function App() {
 			lighter: "#CDE69E",
 			xlighter: "#DDEEBE"
 		  },
+		  tertiary: {
+			main: '#ffffff',
+			// lighter: "#CDE69E",
+			// xlighter: "#DDEEBE"
+		  },
 		  background: {
 			// default: "#CDE2F4"
 		  },
@@ -27,10 +32,11 @@ function App() {
 
 	const [palette, setPalette] = useState('');
 	const [method, setMethod] = useState({});
+	const [cycle, setCycle] = useState(0);
 
 	return (
 		<ThemeProvider theme={theme}>
-			<MethodContext.Provider value={{palette, setPalette, method, setMethod}}>
+			<MethodContext.Provider value={{palette, setPalette, method, setMethod, cycle, setCycle}}>
 				<CssBaseline />
 				<BrowserRouter>
 					<Routes>
