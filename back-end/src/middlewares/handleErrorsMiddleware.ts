@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { AppError, isAppError } from "../utils/errorUtils.js";
 
 const serviceErrorToStatusCode = {
   unauthorized: 401,
@@ -43,8 +44,8 @@ export function unprocessableError(entity: string) {
   };
 }
 
-export default function handleErrorsMiddleware(err , req: Request, res: Response, next: NextFunction) {
-  if (err.type) {
+export function handleErrorsMiddleware(err: Error | AppError, req: Request, res: Response, next: NextFunction) {
+  if (isAppError(err)) {
     return res.status(serviceErrorToStatusCode[err.type]).send(err.message);
   }
 
