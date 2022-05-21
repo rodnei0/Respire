@@ -5,6 +5,8 @@ import MethodContext from './contexts/MethodContext';
 import Home from './pages/Home';
 import Methods from './pages/Methods';
 import { useState } from 'react';
+import Progress from './pages/Progress';
+import PageContext from './contexts/PageContext';
 
 function App() {
 	const theme = createTheme({
@@ -33,17 +35,22 @@ function App() {
 	const [palette, setPalette] = useState('');
 	const [method, setMethod] = useState({});
 	const [cycle, setCycle] = useState(0);
+    const [page, setPage] = useState('methodsMenu');
+
 
 	return (
 		<ThemeProvider theme={theme}>
 			<MethodContext.Provider value={{palette, setPalette, method, setMethod, cycle, setCycle}}>
+			<PageContext.Provider value={{page, setPage}}>
 				<CssBaseline />
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/methods" element={<Methods />} />
+						<Route path="/progress" element={<Progress />} />
 					</Routes>
 				</BrowserRouter>
+			</PageContext.Provider>
 			</MethodContext.Provider>
 		</ThemeProvider>
 	);
