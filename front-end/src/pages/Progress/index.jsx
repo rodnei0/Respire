@@ -2,10 +2,13 @@ import * as React from 'react';
 import { Box } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 export default function Progress() {
 	const { token } = useAuth();
     const navigate = useNavigate();
+    const [value, onChange] = React.useState(new Date());
 
     React.useEffect(() => {
         if (!token) {
@@ -15,6 +18,6 @@ export default function Progress() {
     })
 
     return (
-        <Box>TESTE</Box>
+        <Calendar onChange={onChange} value={value} />
     );
 }

@@ -11,6 +11,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import SignUp from './pages/SignUp';
 import { AlertProvider } from './contexts/AlertContext';
 import Alert from './components/Alert';
+import SignIn from './pages/SignIn';
 
 function App() {
 	const theme = createTheme({
@@ -55,6 +56,7 @@ function App() {
 										<Route path="/methods" element={<Methods />} />
 										<Route path="/progress" element={<Progress />} />
 										<Route path="/sign-up" element={<SignUp />} />
+										<Route path="/sign-in" element={<SignIn />} />
 									</Routes>
 								</BrowserRouter>
 								<Alert />

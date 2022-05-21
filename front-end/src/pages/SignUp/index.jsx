@@ -8,13 +8,14 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 import PasswordInput from "../../components/PasswordInput";
 import useAlert from "../../hooks/useAlert";
 import api from "../../services/api";
-import { ArrowBack } from '@mui/icons-material';
+import { Home } from '@mui/icons-material';
+import PageContext from "../../contexts/PageContext";
 
 const styles = {
 	container: {
@@ -43,6 +44,7 @@ const styles = {
 
 
 export default function SignUp() {
+    const {setPage} = React.useContext(PageContext);
 	const { setMessage } = useAlert();
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
@@ -50,6 +52,10 @@ export default function SignUp() {
 		password: "",
 		passwordConfirmation: "",
 	});
+
+	useEffect(() => {
+		setPage('methodsMenu')
+	})
 
 	function handleInputChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -78,7 +84,7 @@ export default function SignUp() {
 		try {
 			await api.signUp({ email, password });
 			setMessage({ type: "success", text: "Cadastro efetuado com sucesso!" });
-			// navigate("/login");
+			navigate("/sign-in");
 		} catch (error) {
 			if (error.response) {
 				setMessage({
@@ -97,7 +103,7 @@ export default function SignUp() {
 	return (
 		<>
 			<AppBar sx={{ position: 'fixed', top: 0, left: 0, right: 0, bgcolor: '#ffffff'}}>
-				<ArrowBack onClick={() => {navigate(-1)}} sx={{color: 'black'}}></ArrowBack>
+				<Home onClick={() => {navigate("/")}} sx={{color: 'black'}}></Home>
 			</AppBar>
 			<Container sx={{ height: '100vh'}} disableGutters={true}>
 				<Container component={'main'} sx={{ height: '100%', display: 'flex'}}>
@@ -140,7 +146,7 @@ export default function SignUp() {
 								value={formData.passwordConfirmation}
 								/>
 							<Box sx={styles.actionsContainer}>
-								<Link component={RouterLink} to="/login">
+								<Link component={RouterLink} to="/sign-in">
 									<Typography>Já possuo cadastro</Typography>
 								</Link>
 								<Button variant="contained" type="submit">
