@@ -12,12 +12,23 @@ function getConfig(token) {
 	};
 }
 
-async function signUp(signUpData) {
-	await baseAPI.post("/sign-up", signUpData);
+function makeBody(email, password) {
+	return (
+	 	{
+			email: email,
+			password: password,
+		}
+	);
 }
 
-async function signIn(signInData) {
-	return baseAPI.post("/sign-in", signInData);
+async function signUp({ email, password }) {
+	const body = makeBody(email, password)
+	await baseAPI.post("/sign-up", body);
+}
+
+async function signIn({ email, password }) {
+	const body = makeBody(email, password)
+	return baseAPI.post("/sign-in", body);
 }
 
 async function getProgress(token) {

@@ -1,4 +1,5 @@
 import {
+	AppBar,
 	Box,
 	Button,
 	Divider,
@@ -86,48 +87,51 @@ function SignIn() {
 	}
 
 	return (
-		<Form onSubmit={handleSubmit}>
-			<Logo />
-			<Box sx={styles.container}>
-				<Typography sx={styles.title} variant="h4" component="h1">
-					Login
-				</Typography>
-				<Button variant="contained" color="secondary">
-					Entrar com Github
-				</Button>
-				<Box sx={styles.dividerContainer}>
-					<Divider sx={{ flex: "1" }} />
-					<Typography variant="caption" component="span">
-						ou
+		<>
+
+			<Form onSubmit={handleSubmit}>
+				<Logo />
+				<Box sx={styles.container}>
+					<Typography sx={styles.title} variant="h4" component="h1">
+						Login
 					</Typography>
-					<Divider sx={{ flex: "1" }} />
-				</Box>
-				<TextField
-					name="email"
-					sx={styles.input}
-					label="Email"
-					type="email"
-					variant="outlined"
-					onChange={handleInputChange}
-					value={formData.email}
-				/>
-				<PasswordInput
-					name="password"
-					sx={styles.input}
-					label="Senha"
-					onChange={handleInputChange}
-					value={formData.password}
-				/>
-				<Box sx={styles.actionsContainer}>
-					<Link component={RouterLink} to="/">
-						<Typography>Não possuo cadastro</Typography>
-					</Link>
-					<Button variant="contained" type="submit">
-						Entrar
+					<Button variant="contained" color="secondary">
+						Entrar com Github
 					</Button>
+					<Box sx={styles.dividerContainer}>
+						<Divider sx={{ flex: "1" }} />
+						<Typography variant="caption" component="span">
+							ou
+						</Typography>
+						<Divider sx={{ flex: "1" }} />
+					</Box>
+					<TextField
+						name="email"
+						sx={styles.input}
+						label="Email"
+						type="email"
+						variant="outlined"
+						onChange={handleInputChange}
+						value={formData.email}
+						/>
+					<PasswordInput
+						name="password"
+						sx={styles.input}
+						label="Senha"
+						onChange={handleInputChange}
+						value={formData.password}
+					/>
+					<Box sx={styles.actionsContainer}>
+						<Link component={RouterLink} to="/">
+							<Typography>Não possuo cadastro</Typography>
+						</Link>
+						<Button variant="contained" type="submit">
+							Entrar
+						</Button>
+					</Box>
 				</Box>
-			</Box>
-		</Form>
+			</Form>
+		</>
 	);
 }
 

@@ -5,7 +5,7 @@ const styles = {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  paddingTop: "55px",
+  width: "100%",
 };
 
 export default function Form({ children, onSubmit }) {

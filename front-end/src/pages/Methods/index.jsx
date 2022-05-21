@@ -49,7 +49,7 @@ export default function Methods() {
                 }
             }, totalTime);
         }
-    },[]);
+    },[breatheInTime, holdTime, breatheOutTime, totalTime, cycle, setAnimation, setStep, setStepTime]);
     
     return (
         <Container sx={{ height: '100vh', pt: 5, pb: 5}} disableGutters={true}>

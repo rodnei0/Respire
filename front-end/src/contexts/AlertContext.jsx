@@ -3,15 +3,15 @@ import { createContext, useState } from "react";
 export const AlertContext = createContext(null);
 
 export function AlertProvider({ children }) {
-  const [message, setMessage] = useState(null);
+	const [message, setMessage] = useState(null);
 
-  function handleClose() {
-    setMessage(null);
-  }
+	function handleClose() {
+		setMessage(null);
+	}
 
-  return (
-    <AlertContext.Provider value={{ message, setMessage, handleClose }}>
-      {children}
-    </AlertContext.Provider>
-  );
+	return (
+		<AlertContext.Provider value={{ message, setMessage, handleClose }}>
+			{children}
+		</AlertContext.Provider>
+	);
 }
