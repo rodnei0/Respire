@@ -4,6 +4,6 @@ import ensureAuthenticatedMiddleware from "../middlewares/ensureAuthenticatedMid
 
 const progressRouter = Router();
 
-progressRouter.get("/categories", ensureAuthenticatedMiddleware, progressController.findMany);
+progressRouter.get("/progress", ensureAuthenticatedMiddleware, progressController.findMany);
 
 export default progressRouter;

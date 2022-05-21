@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Container } from '@mui/material';
 import BottomNav from '../../components/BottomNav';
 import TopBar from '../../components/TopBar';
-import MethodsMenu from '../../components/MethodsMenu';
+import MethodsMenu from '../MethodsMenu';
 import Progress from '../Progress';
 import PageContext from '../../contexts/PageContext';
 

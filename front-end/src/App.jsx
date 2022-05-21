@@ -7,6 +7,9 @@ import Methods from './pages/Methods';
 import { useState } from 'react';
 import Progress from './pages/Progress';
 import PageContext from './contexts/PageContext';
+import { AuthProvider } from './contexts/AuthContext';
+import SignUp from './pages/SignUp';
+import { AlertProvider } from './contexts/AlertContext';
 
 function App() {
 	const theme = createTheme({
@@ -41,16 +44,21 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<MethodContext.Provider value={{palette, setPalette, method, setMethod, cycle, setCycle}}>
-			<PageContext.Provider value={{page, setPage}}>
-				<CssBaseline />
-				<BrowserRouter>
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/methods" element={<Methods />} />
-						<Route path="/progress" element={<Progress />} />
-					</Routes>
-				</BrowserRouter>
-			</PageContext.Provider>
+				<PageContext.Provider value={{page, setPage}}>
+					<AlertProvider>
+						<AuthProvider>
+							<CssBaseline />
+							<BrowserRouter>
+								<Routes>
+									<Route path="/" element={<Home />} />
+									<Route path="/methods" element={<Methods />} />
+									<Route path="/progress" element={<Progress />} />
+									<Route path="/sign-up" element={<SignUp />} />
+								</Routes>
+							</BrowserRouter>
+						</AuthProvider>
+					</AlertProvider>
+				</PageContext.Provider>
 			</MethodContext.Provider>
 		</ThemeProvider>
 	);
