@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import * as authService from "../services/authService.js";
-import { unauthorizedError } from "./handleErrorsMiddleware.js";
+import { unauthorizedError } from "../utils/errorUtils.js";
 
 export default async function ensureAuthenticatedMiddleware(
   req: Request,

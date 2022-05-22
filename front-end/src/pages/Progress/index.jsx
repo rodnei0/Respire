@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from '@mui/material';
+// import { Box } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
@@ -9,6 +9,7 @@ export default function Progress() {
 	const { token } = useAuth();
     const navigate = useNavigate();
     const [value, onChange] = React.useState(new Date());
+    console.log(token)
 
     React.useEffect(() => {
         if (!token) {

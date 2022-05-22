@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import joi from 'joi';
-import { unprocessableError } from "./handleErrorsMiddleware.js";
+import { unprocessableError } from "../utils/errorUtils.js"
 
 export default function validateSchemaMiddleware(schema: joi.ObjectSchema) {
     return (req: Request, res: Response, next: NextFunction) => {

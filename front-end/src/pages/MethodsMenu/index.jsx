@@ -48,7 +48,7 @@ export default function MethodsMenu() {
                                 sx={{ bgcolor: `${method.type}.main`, height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap', '&:hover': {cursor: 'pointer'}}}
                                 > 
                                 <CardContent>
-                                    <Typography variant='h5' align='center'>
+                                    <Typography variant='h5' align='center' id='name'>
                                         {method.name}
                                 </Typography>
                                     <Typography variant='body1' align='center'>

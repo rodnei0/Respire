@@ -7,7 +7,7 @@ import { keyframes } from '@emotion/react';
 import MethodContext from '../../contexts/MethodContext';
 
 function BreathAnimation(breatheTime, holdTime, breatheOutTime, setAnimation, setStep, setStepTime) {
-    setStep('Respire');
+    setStep('Inspire');
     setStepTime(breatheTime);
     setAnimation(grow);
 

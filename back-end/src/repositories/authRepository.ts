@@ -1,6 +1,6 @@
 import prisma from "../database.js";
 
-export async function findUserByEmail(email: string){
+export async function findByEmail(email: string){
 	return prisma.user.findUnique({
 		where: {
 			email: email
@@ -24,3 +24,9 @@ export async function insertUser(email: string, hashedPassword: string) {
 		}
 	});
 }0
+
+export const authRepository = {
+    findByEmail,
+    findById,
+    insertUser,
+};

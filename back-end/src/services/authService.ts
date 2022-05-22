@@ -5,24 +5,27 @@ import {
 	conflictError,
 	notFoundError,
 	unauthorizedError,
-} from "../middlewares/handleErrorsMiddleware.js";
-// import { users } from "@prisma/client";
+} from "../utils/errorUtils.js"
+import { User } from "@prisma/client";
+
+export type CreateUserData = Omit<User, "id">;
+
 
 export type authTypes =
   | "sign-in"
   | "sign-up";
 
-export async function signUp(email: string, password: string) {
-	await verifyIfUserExists(email, 'sign-up');
+export async function signUp(createUserData: CreateUserData) {
+	await verifyIfUserExists(createUserData.email, 'sign-up');
 
-	const hashedPassword = bcrypt.hashSync(password, 12);
+	const hashedPassword = bcrypt.hashSync(createUserData.password, 12);
 
-	authRepository.insertUser(email, hashedPassword);
+	authRepository.insertUser(createUserData.email, hashedPassword);
 }
 
-export async function signIn(email: string, password: string) {
-	const user = await verifyIfUserExists(email, 'sign-in');
-	verifyPassword(user, password);
+export async function signIn(createUserData: CreateUserData) {
+	const user = await verifyIfUserExists(createUserData.email, 'sign-in');
+	verifyPassword(user, createUserData.password);
 
 	const token = jwt.sign(
 	  {
@@ -39,7 +42,7 @@ export async function verifyToken(token: string) {
 }
 
 export async function verifyIfUserExists(email: string, type: authTypes) {
-	const existingUser = await authRepository.findUserByEmail(email);
+	const existingUser = await authRepository.findByEmail(email);
 
 	if (!existingUser && type === 'sign-in') throw notFoundError('Email');
 	if (existingUser && type === 'sign-up') throw conflictError('Email');
@@ -47,7 +50,7 @@ export async function verifyIfUserExists(email: string, type: authTypes) {
 	return existingUser;
 }
 
-export function verifyPassword(user: any, password: string) {
+export function verifyPassword(user: User, password: string) {
 	if (!bcrypt.compareSync(password, user.password)) throw unauthorizedError('Password');
 }
 

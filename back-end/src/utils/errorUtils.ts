@@ -1,43 +1,58 @@
 type AppErrorTypes =
-  | "conflict"
-  | "not_found"
-  | "unauthorized"
-  | "wrong_schema"
-  | "bad_request";
+	| "conflict"
+	| "not_found"
+	| "unauthorized"
+	| "wrong_schema"
+	| "bad_request";
 
 export interface AppError {
-  type: AppErrorTypes;
-  message: string;
+	type: AppErrorTypes;
+	message: string;
 }
+
+export const serviceErrorToStatusCode = {
+	unauthorized: 401,
+	forbidden: 403,
+	notFound: 404,
+	conflict: 409,
+	unprocessable: 422,
+  };
 
 export function isAppError(error: object): error is AppError {
-  return (error as AppError).type !== undefined;
+	return (error as AppError).type !== undefined;
 }
 
-// export function errorTypeToStatusCode(type: AppErrorTypes) {
-//   if (type === "conflict") return 409;
-//   if (type === "not_found") return 404;
-//   if (type === "unauthorized") return 401;
-//   if (type === "wrong_schema") return 422;
-//   return 400;
-// }
+export function unauthorizedError(entity: string) {
+	return {
+		type: "unauthorized",
+		message: `You don't have permission to do this, chek your "${entity}"!`
+	};
+}
 
-// export function badRequestError(message?: string): AppError {
-//   return { type: "bad_request", message };
-// }
+export function forbiddenError(entity: string) {
+	return {
+		type: "forbidden",
+		message: `You don't have permission to do this, chek your "${entity}"!`
+	};
+}
 
-// export function conflictError(message?: string): AppError {
-//   return { type: "conflict", message };
-// }
+export function notFoundError(entity: string) {
+	return {
+		type: "notFound",
+		message: `Could not find specified "${entity}"!`
+	};
+}
 
-// export function notFoundError(message?: string): AppError {
-//   return { type: "not_found", message };
-// }
+export function conflictError(entity: string) {
+	return {
+		type: "conflict",
+		message: `The specified "${entity}" already exists!`
+	};
+}
 
-// export function unauthorizedError(message?: string): AppError {
-//   return { type: "unauthorized", message };
-// }
-
-// export function wrongSchemaError(message?: string): AppError {
-//   return { type: "wrong_schema", message };
-// }
+export function unprocessableError(entity: string) {
+	return {
+		type: "unprocessable",
+		message: `Check your e-mail and password!`
+	};
+}
