@@ -4,7 +4,10 @@
   "main": "src/server.ts",
   "type": "module",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/server.js",
     "dev": "npx nodemon",
+    "dev:migrate": "npx prisma migrate dev && npx nodemon",
     "test": "dotenv -e .env.test npx prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i"
   },
   "dependencies": {
@@ -24,6 +27,7 @@
     "jest": "^28.1.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.16",
     "prisma": "^3.14.0",
     "supertest": "^6.2.3",
     "ts-jest": "^28.0.2",

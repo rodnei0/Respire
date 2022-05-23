@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import * as authRepository from "../repositories/authRepository.js";
+import { authRepository } from "../repositories/authRepository.js";
 import {
 	conflictError,
 	notFoundError,
@@ -57,3 +57,19 @@ export async function findById(id: number) {
   
 	return user;
 }
+
+async function seed(data: CreateUserData) {
+    await authRepository.seed(data);
+}
+
+async function truncate() {
+    await authRepository.truncate();
+}
+
+export const authService = {
+    signUp,
+	signIn,
+    findById,
+	seed,
+	truncate
+};
