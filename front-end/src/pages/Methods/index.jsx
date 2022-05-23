@@ -27,18 +27,8 @@ function BreathAnimation(breatheTime, holdTime, breatheOutTime, method, setAnima
 					setStepTime(holdTime);
 					setAnimation(mantainSmall);
 
-					setTimeout(() => {
-						setStep("Fim :)");
-						
-					}, holdTime);
-					
 				}, breatheOutTime);
-			} else {
-				setTimeout(() => {
-					setStep("Fim :)");
-					
-				}, breatheOutTime);
-			}
+			} 
 		}, holdTime);
 	}, breatheTime);
 }
@@ -55,13 +45,13 @@ export default function Methods() {
 	const navigate = useNavigate();
 
 	React.useEffect(() => {
-		BreathAnimation(breatheInTime, holdTime, breatheOutTime, method, setAnimation, setStep, setStepTime);
+		BreathAnimation(breatheInTime, holdTime, breatheOutTime, method,  setAnimation, setStep, setStepTime);
 
 		if (cycle > 1) {
 			let counter = 0;
 			let looper = setInterval(() => {
 				counter++;
-				BreathAnimation(breatheInTime, holdTime, breatheOutTime, method, setAnimation, setStep, setStepTime);
+				BreathAnimation(breatheInTime, holdTime, breatheOutTime,  method, setAnimation, setStep, setStepTime);
 
 				if (counter >= cycle - 1) {
 					clearInterval(looper);
@@ -147,8 +137,8 @@ const shrink = keyframes`
 const BreathCircle = styled(Box)`
     width: 30vw;
     height: 30vw;
-    max-height: 75vh;
-    max-width: 75vh;
+    max-height: 30vh;
+    max-width: 30vh;
     border-radius: 50%;
     animation: ${props => props.animation && props.animation} ${props => props.stepTime && props.stepTime + "ms"} linear;
     position: absolute;
