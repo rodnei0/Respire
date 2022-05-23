@@ -1,7 +1,8 @@
 import axios from "axios";
+const { REACT_APP_API_BASE_URL } = process.env;
 
 const baseAPI = axios.create({
-    baseURL: "http://localhost:5000/",
+    baseURL: REACT_APP_API_BASE_URL || "http://localhost:5000"
 });
 
 function getConfig(token) {

@@ -1,6 +1,9 @@
 {
   "name": "back-end",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "src/server.ts",
   "type": "module",
   "scripts": {
