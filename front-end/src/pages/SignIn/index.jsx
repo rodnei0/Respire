@@ -97,14 +97,7 @@ export default function SignIn() {
 							<Typography sx={styles.title} variant="h4" component="h1">
 								Login
 							</Typography>
-							<Button variant="contained" color="secondary">
-								Entrar com Github
-							</Button>
 							<Box sx={styles.dividerContainer}>
-								<Divider sx={{ flex: "1" }} />
-								<Typography variant="caption" component="span">
-									ou
-								</Typography>
 								<Divider sx={{ flex: "1" }} />
 							</Box>
 							<TextField
