@@ -43,6 +43,7 @@ export default function Methods() {
 	const [step, setStep] = React.useState("");
 	const [stepTime, setStepTime] = React.useState(breatheInTime);
 	const navigate = useNavigate();
+	console.log(cycle);
 
 	React.useEffect(() => {
 		BreathAnimation(breatheInTime, holdTime, breatheOutTime, method, setAnimation, setStep, setStepTime);

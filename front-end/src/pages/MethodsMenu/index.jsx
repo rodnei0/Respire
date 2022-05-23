@@ -8,7 +8,7 @@ export default function MethodsMenu() {
 	const navigate = useNavigate();
 	React.useEffect(() => {
 		setCycle(1);
-	});
+	},[]);
 
 	function handleMethod(method) {
 		const totalTime = method === "primary" ? 19000 : 16000;
