@@ -1,24 +1,36 @@
 import * as React from 'react';
-// import { Box } from '@mui/material';
+import { CircularProgress, Container } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import useAlert from '../../hooks/useAlert';
+import usePage from '../../hooks/usePage';
 
 export default function Progress() {
 	const { token } = useAuth();
+    const { setMessage } = useAlert();
+    const { setDisabled } = usePage();
     const navigate = useNavigate();
     const [value, onChange] = React.useState(new Date());
-    console.log(token)
 
-    React.useEffect(() => {
-        if (!token) {
-            console.log("Você precisa estar logado para finalizar sua compra, estamos redirecionando você para a página de login...");
-            navigate('/sign-up');
-        }
-    })
+    function IsLogged() {
+        let isToken = token ? true : false
+        React.useEffect(() => {
+            if (!isToken) {
+                setDisabled(true);
+                setMessage({ type: "info", text: "Você precisa estar logado para visualizar seu progresso!" });
+                setTimeout(() => {
+                    navigate('/sign-up')
+                },1500)
+            } 
+        },[isToken])
+        return isToken
+    }
 
     return (
-        <Calendar onChange={onChange} value={value} />
+		<Container sx={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            {IsLogged() ? <Calendar onChange={onChange} value={value} /> : <CircularProgress />}
+        </Container>
     );
 }

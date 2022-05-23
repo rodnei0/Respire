@@ -14,6 +14,7 @@ import PasswordInput from "../../components/PasswordInput";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../..//hooks/useAuth";
 import api from "../../services/api";
+import TopBar from "../../components/TopBar";
 
 const styles = {
 	container: {
@@ -86,50 +87,53 @@ export default function SignIn() {
 	}
 
 	return (
-		<Container sx={{ height: '100vh' }} disableGutters={true}>
-			<Container component={'main'} sx={{ height: '100%', display: 'flex' }}>
-				<Form onSubmit={handleSubmit}>
-					<Box sx={styles.container}>
-						<Typography sx={styles.title} variant="h4" component="h1">
-							Login
-						</Typography>
-						<Button variant="contained" color="secondary">
-							Entrar com Github
-						</Button>
-						<Box sx={styles.dividerContainer}>
-							<Divider sx={{ flex: "1" }} />
-							<Typography variant="caption" component="span">
-								ou
+		<>
+			<TopBar></TopBar>
+			<Container sx={{ height: '100vh' }} disableGutters={true}>
+				<Container component={'main'} sx={{ height: '100%', display: 'flex' }}>
+					<Form onSubmit={handleSubmit}>
+						<Box sx={styles.container}>
+							<Typography sx={styles.title} variant="h4" component="h1">
+								Login
 							</Typography>
-							<Divider sx={{ flex: "1" }} />
-						</Box>
-						<TextField
-							name="email"
-							sx={styles.input}
-							label="Email"
-							type="email"
-							variant="outlined"
-							onChange={handleInputChange}
-							value={formData.email}
-							/>
-						<PasswordInput
-							name="password"
-							sx={styles.input}
-							label="Senha"
-							onChange={handleInputChange}
-							value={formData.password}
-							/>
-						<Box sx={styles.actionsContainer}>
-							<Link component={RouterLink} to="/sign-up">
-								<Typography>Não possuo cadastro</Typography>
-							</Link>
-							<Button variant="contained" type="submit">
-								Entrar
+							<Button variant="contained" color="secondary">
+								Entrar com Github
 							</Button>
+							<Box sx={styles.dividerContainer}>
+								<Divider sx={{ flex: "1" }} />
+								<Typography variant="caption" component="span">
+									ou
+								</Typography>
+								<Divider sx={{ flex: "1" }} />
+							</Box>
+							<TextField
+								name="email"
+								sx={styles.input}
+								label="Email"
+								type="email"
+								variant="outlined"
+								onChange={handleInputChange}
+								value={formData.email}
+								/>
+							<PasswordInput
+								name="password"
+								sx={styles.input}
+								label="Senha"
+								onChange={handleInputChange}
+								value={formData.password}
+								/>
+							<Box sx={styles.actionsContainer}>
+								<Link component={RouterLink} to="/sign-up">
+									<Typography>Não possuo cadastro</Typography>
+								</Link>
+								<Button variant="contained" type="submit">
+									Entrar
+								</Button>
+							</Box>
 						</Box>
-					</Box>
-				</Form>
+					</Form>
+				</Container>
 			</Container>
-		</Container>
+		</>
 	);
 }

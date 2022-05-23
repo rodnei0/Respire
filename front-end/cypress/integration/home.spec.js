@@ -3,6 +3,8 @@ describe("Home page", () => {
 
         cy.visit("http://localhost:3000/");
 
+        cy.contains('Respire');
         cy.contains('Método');
+        cy.contains('Progresso');
     });
 });

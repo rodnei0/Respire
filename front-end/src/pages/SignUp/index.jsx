@@ -15,7 +15,8 @@ import PasswordInput from "../../components/PasswordInput";
 import useAlert from "../../hooks/useAlert";
 import api from "../../services/api";
 import { Home } from '@mui/icons-material';
-import PageContext from "../../contexts/PageContext";
+import usePage from "../../hooks/usePage";
+import TopBar from "../../components/TopBar";
 
 const styles = {
 	container: {
@@ -44,7 +45,7 @@ const styles = {
 
 
 export default function SignUp() {
-    const {setPage} = React.useContext(PageContext);
+    const { setPage, setDisabled } = usePage();
 	const { setMessage } = useAlert();
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
@@ -54,7 +55,8 @@ export default function SignUp() {
 	});
 
 	useEffect(() => {
-		setPage('methodsMenu')
+		setPage('methodsMenu');
+		setDisabled(false)
 	})
 
 	function handleInputChange(e) {
@@ -102,9 +104,7 @@ export default function SignUp() {
 
 	return (
 		<>
-			<AppBar sx={{ position: 'fixed', top: 0, left: 0, right: 0, bgcolor: '#ffffff'}}>
-				<Home onClick={() => {navigate("/")}} sx={{color: 'black'}}></Home>
-			</AppBar>
+			<TopBar></TopBar>
 			<Container sx={{ height: '100vh'}} disableGutters={true}>
 				<Container component={'main'} sx={{ height: '100%', display: 'flex'}}>
 					<Form onSubmit={handleSubmit}>

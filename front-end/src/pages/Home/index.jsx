@@ -4,11 +4,11 @@ import BottomNav from '../../components/BottomNav';
 import TopBar from '../../components/TopBar';
 import MethodsMenu from '../MethodsMenu';
 import Progress from '../Progress';
-import PageContext from '../../contexts/PageContext';
+import usePage from '../../hooks/usePage';
 
 export default function Home() {
-    const {page} = React.useContext(PageContext);
-    
+    const { page } = usePage();
+
     return (
         <Container sx={{ height: '100vh', pt: 5, pb: 8}} disableGutters={true}>
             <TopBar></TopBar>

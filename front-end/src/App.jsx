@@ -1,15 +1,15 @@
+import { useState } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import { AuthProvider } from './contexts/AuthContext';
+import { AlertProvider } from './contexts/AlertContext';
+import { PageProvider } from './contexts/PageContext';
 import MethodContext from './contexts/MethodContext';
 import Home from './pages/Home';
 import Methods from './pages/Methods';
-import { useState } from 'react';
-import Progress from './pages/Progress';
-import PageContext from './contexts/PageContext';
-import { AuthProvider } from './contexts/AuthContext';
 import SignUp from './pages/SignUp';
-import { AlertProvider } from './contexts/AlertContext';
+import Progress from './pages/Progress';
 import Alert from './components/Alert';
 import SignIn from './pages/SignIn';
 
@@ -40,13 +40,11 @@ function App() {
 	const [palette, setPalette] = useState('');
 	const [method, setMethod] = useState({});
 	const [cycle, setCycle] = useState(0);
-    const [page, setPage] = useState('methodsMenu');
-
 
 	return (
 		<ThemeProvider theme={theme}>
 			<MethodContext.Provider value={{palette, setPalette, method, setMethod, cycle, setCycle}}>
-				<PageContext.Provider value={{page, setPage}}>
+				<PageProvider>
 					<AlertProvider>
 							<AuthProvider>
 								<CssBaseline />
@@ -62,7 +60,7 @@ function App() {
 								<Alert />
 							</AuthProvider>
 					</AlertProvider>
-				</PageContext.Provider>
+				</PageProvider>
 			</MethodContext.Provider>
 		</ThemeProvider>
 	);

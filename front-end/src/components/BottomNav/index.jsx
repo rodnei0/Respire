@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Paper } from '@mui/material';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { Widgets, Assessment } from '@mui/icons-material';
-import PageContext from '../../contexts/PageContext';
+import usePage from '../../hooks/usePage';
 
 export default function BottomNav() {
-    const { setPage } = React.useContext(PageContext);
+    const { setPage, disabled } = usePage();
     const [value, setValue] = React.useState(0);
 
     React.useEffect(() => {
@@ -21,8 +21,8 @@ export default function BottomNav() {
                 onChange={(event, newValue) => {
                     setValue(newValue);
             }}>
-                <BottomNavigationAction label="Métodos" icon={<Widgets />}/>
-                <BottomNavigationAction label="Progresso" icon={<Assessment />} />
+                <BottomNavigationAction label="Métodos" icon={<Widgets />} disabled={disabled}/>
+                <BottomNavigationAction label="Progresso" icon={<Assessment />} disabled={disabled}/>
             </BottomNavigation>
         </Paper>
     );
