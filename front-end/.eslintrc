@@ -54,6 +54,5 @@
 		"React": "writable",
 		"module": "writable",
 		"process": "writable",
-		"cy": "writable"
 	}
 }

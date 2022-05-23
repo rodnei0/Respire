@@ -14,7 +14,7 @@ describe("Progress page", () => {
 
         cy.get("#progress").click();
 
-        cy.contains('Você precisa estar logado');
-        cy.contains('Cadastro');
+        cy.contains("Você precisa estar logado");
+        cy.contains("Cadastro");
     });
 });

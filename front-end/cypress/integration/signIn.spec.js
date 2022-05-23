@@ -10,9 +10,9 @@ describe("SignUp page", () => {
 
     it("should signup succcessfully", () => {
         const user = {
-            email: 'teste@teste.com',
-            password: '123'
-        }
+            email: "teste@teste.com",
+            password: "123"
+        };
 
         cy.request("POST", "http://localhost:5000/e2e/seed", user);
 
@@ -22,6 +22,6 @@ describe("SignUp page", () => {
         cy.get("#password").type(user.password);
         cy.get("#signIn").click();
 
-        cy.url().should('equal', 'http://localhost:3000/');
+        cy.url().should("equal", "http://localhost:3000/");
     });
 });
