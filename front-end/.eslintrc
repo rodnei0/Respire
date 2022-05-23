@@ -54,5 +54,10 @@
 		"React": "writable",
 		"module": "writable",
 		"process": "writable",
-	}
+	},
+	"settings": {
+		"react": {
+		  "version": "detect"
+		}
+	  }
 }
