@@ -1,25 +1,28 @@
 import * as React from "react";
 import { Typography, Slider, Card, CardActions, CardContent, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import MethodContext from "../../contexts/MethodContext";
+import useMethod from "../../hooks/useMethod";
 
 export default function MethodsMenu() {
-	const { setPalette, setMethod, setCycle } = React.useContext(MethodContext);
+	const { setPalette, setMethod, setCycle } = useMethod();
 	const navigate = useNavigate();
 	React.useEffect(() => {
 		setCycle(1);
 	});
 
 	function handleMethod(method) {
-		const totalTime = method === "primary" ? 19000 : 12000;
+		const totalTime = method === "primary" ? 19000 : 16000;
 		const breatheTime = method === "primary" ? 4000 : 4000;
-		const holdTime = method === "primary" ? 7000 : 4000;
+		const holdTime = method === "primary" ? 7000 : 4000; 
+		const breatheOutTime = method === "primary" ? 8000 : 4000; 
 
 		setPalette(method);
 		setMethod({
+			type: method,
 			totalTime: totalTime,
 			breatheInTime: breatheTime,
 			holdTime: holdTime,
+			breatheOutTime: breatheOutTime
 		});
 
 		navigate("/methods");

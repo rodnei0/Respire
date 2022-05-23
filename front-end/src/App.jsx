@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AlertProvider } from "./contexts/AlertContext";
 import { PageProvider } from "./contexts/PageContext";
-import MethodContext from "./contexts/MethodContext";
+import { MethodProvider } from "./contexts/MethodContext";
 import Home from "./pages/Home";
 import Methods from "./pages/Methods";
 import SignUp from "./pages/SignUp";
@@ -28,22 +27,15 @@ function App() {
 			},
 			tertiary: {
 				main: "#ffffff",
-				// lighter: "#CDE69E",
-				// xlighter: "#DDEEBE"
 			},
 			background: {
-				// default: "#CDE2F4"
 			},
 		},
 	});
 
-	const [palette, setPalette] = useState("");
-	const [method, setMethod] = useState({});
-	const [cycle, setCycle] = useState(0);
-
 	return (
 		<ThemeProvider theme={theme}>
-			<MethodContext.Provider value={{ palette, setPalette, method, setMethod, cycle, setCycle }}>
+			<MethodProvider>
 				<PageProvider>
 					<AlertProvider>
 						<AuthProvider>
@@ -61,7 +53,7 @@ function App() {
 						</AuthProvider>
 					</AlertProvider>
 				</PageProvider>
-			</MethodContext.Provider>
+			</MethodProvider>
 		</ThemeProvider>
 	);
 }
