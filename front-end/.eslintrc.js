@@ -1,17 +1,13 @@
-{
-	"plugins": [
-		"react",
-		"cypress"
-	],
+module.exports = {
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
 	"extends": [
 		"eslint:recommended",
 		"plugin:react/recommended",
 		"plugin:cypress/recommended"
 	],
-	"env": {
-		"browser": true,
-		"es2021": true
-	},
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -19,20 +15,14 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
+	"plugins": [
+		"react",
+		"cypress"
+	],
 	"rules": {
-		"jest/expect-expect": "off",
-		"no-unused-vars": "off",
-		"space-before-function-paren": [
-			"error",
-			{
-				"anonymous": "always",
-				"named": "never",
-				"asyncArrow": "always"
-			}
-		],
 		"indent": [
 			"error",
-			4
+			"tab"
 		],
 		"linebreak-style": [
 			"error",
@@ -46,18 +36,12 @@
 			"error",
 			"always"
 		],
-		"react/prop-types": "off",
-		"react/display-name": "off"
+		"jest/expect-expect": "off",
+		"no-unused-vars": "off",
 	},
 	"globals": {
-		"describe": "writable",
 		"React": "writable",
 		"module": "writable",
 		"process": "writable",
-	},
-	"settings": {
-		"react": {
-		  "version": "detect"
-		}
-	  }
-}
+	}
+};
