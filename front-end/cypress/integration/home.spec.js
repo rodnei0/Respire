@@ -1,5 +1,5 @@
 describe("Home page", () => {
-    it("should find methods", () => {
+    it("should load homepage correctly", () => {
 
         cy.visit("http://localhost:3000/");
 

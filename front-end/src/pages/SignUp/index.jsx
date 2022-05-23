@@ -123,6 +123,7 @@ export default function SignUp() {
 								<Divider sx={{ flex: "1" }} />
 							</Box>
 							<TextField
+								id="email"
 								name="email"
 								sx={styles.input}
 								label="Email"
@@ -132,6 +133,7 @@ export default function SignUp() {
 								value={formData.email}
 								/>
 							<PasswordInput
+								id="password"
 								name="password"
 								sx={styles.input}
 								label="Senha"
@@ -139,6 +141,7 @@ export default function SignUp() {
 								value={formData.password}
 								/>
 							<PasswordInput
+								id="passwordConfirmation"
 								name="passwordConfirmation"
 								sx={styles.input}
 								label="Confirme sua senha"
@@ -149,7 +152,7 @@ export default function SignUp() {
 								<Link component={RouterLink} to="/sign-in">
 									<Typography>Já possuo cadastro</Typography>
 								</Link>
-								<Button variant="contained" type="submit">
+								<Button id="signUp" variant="contained" type="submit">
 									Cadastrar
 								</Button>
 							</Box>

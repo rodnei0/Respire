@@ -107,6 +107,7 @@ export default function SignIn() {
 								<Divider sx={{ flex: "1" }} />
 							</Box>
 							<TextField
+								id="email"
 								name="email"
 								sx={styles.input}
 								label="Email"
@@ -117,6 +118,7 @@ export default function SignIn() {
 								/>
 							<PasswordInput
 								name="password"
+								id="password"
 								sx={styles.input}
 								label="Senha"
 								onChange={handleInputChange}
@@ -126,7 +128,7 @@ export default function SignIn() {
 								<Link component={RouterLink} to="/sign-up">
 									<Typography>Não possuo cadastro</Typography>
 								</Link>
-								<Button variant="contained" type="submit">
+								<Button id="signIn" variant="contained" type="submit">
 									Entrar
 								</Button>
 							</Box>

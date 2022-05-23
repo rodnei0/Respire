@@ -21,8 +21,8 @@ export default function BottomNav() {
                 onChange={(event, newValue) => {
                     setValue(newValue);
             }}>
-                <BottomNavigationAction label="Métodos" icon={<Widgets />} disabled={disabled}/>
-                <BottomNavigationAction label="Progresso" icon={<Assessment />} disabled={disabled}/>
+                <BottomNavigationAction id="methods" label="Métodos" icon={<Widgets />} disabled={disabled}/>
+                <BottomNavigationAction id="progress" label="Progresso" icon={<Assessment />} disabled={disabled}/>
             </BottomNavigation>
         </Paper>
     );
