@@ -38,10 +38,16 @@ module.exports = {
 		],
 		"jest/expect-expect": "off",
 		"no-unused-vars": "off",
+		"react/prop-types": "off"
 	},
 	"globals": {
 		"React": "writable",
 		"module": "writable",
 		"process": "writable",
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
 	}
 };

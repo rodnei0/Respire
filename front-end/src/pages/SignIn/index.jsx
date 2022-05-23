@@ -19,7 +19,7 @@ import TopBar from "../../components/TopBar";
 const styles = {
 	container: {
 		display: "flex",
-		justifyContent: 'center',
+		justifyContent: "center",
 		flexDirection: "column",
 		textAlign: "center",
 		width: "100%",
@@ -89,8 +89,8 @@ export default function SignIn() {
 	return (
 		<>
 			<TopBar></TopBar>
-			<Container sx={{ height: '100vh' }} disableGutters={true}>
-				<Container component={'main'} sx={{ height: '100%', display: 'flex' }}>
+			<Container sx={{ height: "100vh" }} disableGutters={true}>
+				<Container component={"main"} sx={{ height: "100%", display: "flex" }}>
 					<Form onSubmit={handleSubmit}>
 						<Box sx={styles.container}>
 							<Typography sx={styles.title} variant="h4" component="h1">
@@ -115,7 +115,7 @@ export default function SignIn() {
 								variant="outlined"
 								onChange={handleInputChange}
 								value={formData.email}
-								/>
+							/>
 							<PasswordInput
 								name="password"
 								id="password"
@@ -123,7 +123,7 @@ export default function SignIn() {
 								label="Senha"
 								onChange={handleInputChange}
 								value={formData.password}
-								/>
+							/>
 							<Box sx={styles.actionsContainer}>
 								<Link component={RouterLink} to="/sign-up">
 									<Typography>Não possuo cadastro</Typography>

@@ -14,14 +14,14 @@ import Form from "../../components/Form";
 import PasswordInput from "../../components/PasswordInput";
 import useAlert from "../../hooks/useAlert";
 import api from "../../services/api";
-import { Home } from '@mui/icons-material';
+import { Home } from "@mui/icons-material";
 import usePage from "../../hooks/usePage";
 import TopBar from "../../components/TopBar";
 
 const styles = {
 	container: {
 		display: "flex",
-		justifyContent: 'center',
+		justifyContent: "center",
 		flexDirection: "column",
 		textAlign: "center",
 		width: "100%",
@@ -45,7 +45,7 @@ const styles = {
 
 
 export default function SignUp() {
-    const { setPage, setDisabled } = usePage();
+	const { setPage, setDisabled } = usePage();
 	const { setMessage } = useAlert();
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
@@ -55,9 +55,9 @@ export default function SignUp() {
 	});
 
 	useEffect(() => {
-		setPage('methodsMenu');
-		setDisabled(false)
-	})
+		setPage("methodsMenu");
+		setDisabled(false);
+	});
 
 	function handleInputChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -105,8 +105,8 @@ export default function SignUp() {
 	return (
 		<>
 			<TopBar></TopBar>
-			<Container sx={{ height: '100vh'}} disableGutters={true}>
-				<Container component={'main'} sx={{ height: '100%', display: 'flex'}}>
+			<Container sx={{ height: "100vh"}} disableGutters={true}>
+				<Container component={"main"} sx={{ height: "100%", display: "flex"}}>
 					<Form onSubmit={handleSubmit}>
 						<Box sx={styles.container}>
 							<Typography sx={styles.title} variant="h4" component="h1">
@@ -131,7 +131,7 @@ export default function SignUp() {
 								variant="outlined"
 								onChange={handleInputChange}
 								value={formData.email}
-								/>
+							/>
 							<PasswordInput
 								id="password"
 								name="password"
@@ -139,7 +139,7 @@ export default function SignUp() {
 								label="Senha"
 								onChange={handleInputChange}
 								value={formData.password}
-								/>
+							/>
 							<PasswordInput
 								id="passwordConfirmation"
 								name="passwordConfirmation"
@@ -147,7 +147,7 @@ export default function SignUp() {
 								label="Confirme sua senha"
 								onChange={handleInputChange}
 								value={formData.passwordConfirmation}
-								/>
+							/>
 							<Box sx={styles.actionsContainer}>
 								<Link component={RouterLink} to="/sign-in">
 									<Typography>Já possuo cadastro</Typography>
