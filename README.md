@@ -1,6 +1,7 @@
 # Respire
 <p align="center">
-  <image src="https://github.com/rodnei0/Pixels/blob/main/src/assets/pixles.gif" />
+  <image src="https://github.com/rodnei0/Respire/blob/main/front-end/src/assets/respire.gif" />
+  
 </p>
 <p align="center">
   Availabe at https://respire-three.vercel.app/
