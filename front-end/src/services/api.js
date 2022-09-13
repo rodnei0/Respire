@@ -23,7 +23,6 @@ function makeBody(email, password) {
 }
 
 async function signUp({ email, password }) {
-	console.log(baseAPI);
 	const body = makeBody(email, password);
 	await baseAPI.post("/sign-up", body);
 }
